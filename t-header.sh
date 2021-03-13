@@ -3,8 +3,8 @@
 spin () {
 
 local pid=$!
-local delay=0.25
-local spinner=( '█■■■■' '■█■■■' '■■█■■' '■■■█■' '■■■■█' )
+local delay=0
+local spinner=( 'LONEWOLF' 'ʟᴏNEWOLF' 'ᴸᴼɴᴇWOLF' 'ʟᴏᴺᴱᴡᴏLF' 'LOɴᴇᵂᴼʟꜰ' 'LONEᴡᴏᴸᶠ' 'LONEWOʟꜰ' )
 
 while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do
 
@@ -12,13 +12,13 @@ for i in "${spinner[@]}"
 do
 	tput civis
 	echo -ne "\033[34m\r[*] Downloading..please wait.........\e[33m[\033[32m$i\033[33m]\033[0m   ";
-	sleep $delay
+	sleep 0.1
 	printf "\b\b\b\b\b\b\b\b";
 done
 done
 printf "   \b\b\b\b\b"
 tput cnorm
-printf "\e[1;33m [Done]\e[0m";
+printf "\e[1;33m    [Done]\e[0m";
 echo "";
 
 }
@@ -61,50 +61,51 @@ apt install figlet pv ncurses-utils binutils coreutils wget git zsh termux-api p
 gem install lolcat &> /dev/null;
 termux-wake-lock;
 if [ -e $PREFIX/share/figlet/Remo773.flf ]; then
-	echo -e "\e[1;34m[*] \033[32mRemo773.flf figlet font is present\033[0m";
-	sleep 4
+	sleep 0
 else
 wget https://raw.githubusercontent.com/remo7777/REMO773/master/Remo773.flf &> /dev/null;
-sleep 3
+sleep 1
 cp Remo773.flf $PREFIX/share/figlet/Remo773.flf;
 cp ASCII-Shadow.flf $PREFIX/share/figlet/ASCII-Shadow.flf;
-sleep 3
+sleep 1
 rm Remo773.flf
 fi
 THEADER () 
 {
 clear;
 echo -e "\033[01;32m
-Remo773 (2020)
+    LONEWOLF
 		
-	menu
-+---------------------------*/
-.......Terminal-Header......
-+---------------------------*/
-oh-my-zsh users only....
+    ╔════════════════════════════════╗
+    ║Creator: Remo773                ║
+    ║░░░░░░░░░░░ CUSTOM-T ░░░░░░░░░░░║
+    ║             Edited by: LONEWOLF║
+    ╚════════════════════════════════╝
+                Telegram: @LONEWOLF_OP
 \033[0m";
 ok=0
 while [ $ok = 0 ];
 do
 	echo ""
 tput setaf 3
-read -p "Pleas enter Name : " PROC
+read -p "Enter Name : " PROC
 tput sgr 0
 if [ ${#PROC} -gt 8 ]; then
 	echo -e "\e[1;34m[*] \033[32mToo long  characters You have input...\033[0m"
 	echo ""
 	echo -e "\033[32mPlz enter less than \033[33m9 \033[32mcharacters Name\033[0m" | pv -qL 10;
 	echo ""
-	sleep 4
+	sleep 0.1
 	clear
 echo -e "\033[01;32m
-Remo773 (2020)
-
-	menu
-+---------------------------*/
-.......Terminal-Header......
-+---------------------------*/
-oh-my-zsh users only....
+    LONEWOLF
+		
+    ╔════════════════════════════════╗
+    ║Creator: Remo773                ║
+    ║░░░░░░░░░░░ CUSTOM-T ░░░░░░░░░░░║
+    ║             Edited by: LONEWOLF║
+    ╚════════════════════════════════╝
+                Telegram: @LONEWOLF_OP
 \033[0m";
 	echo ""
 	echo -e "\e[1;34m \033[32mPlease enter less than 9 characters...\033[0m"
@@ -119,16 +120,13 @@ TNAME="$PROC";
 echo ;
 figlet -f ASCII-Shadow "$PROC" | lolcat;
 echo "";
-#echo -e '\e[0;35m+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\e[00m';
-#echo -e '\033[1;43;30m### SUBSCRIBE MY YOUTUBE CHANNEL ### \033[0m';
-#echo -e '\e[0;35m+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\e[00m';
 echo "";
 echo -e "
-\033[0;31m┌─[\033[1;34m$TNAME\033[1;33m@\033[1;36mtermux\033[0;31m]─[\033[0;32m~${PWD/#"$HOME"}\033[0;31m]
+\033[0;31m┌─[\033[1;34m$TNAME\033[1;33m#\033[1;36mLine-number\033[0;31m]─[\033[0;32m~${PWD/#"$HOME"}\033[0;31m]
 \033[0;31m└──╼ \e[1;31m❯\e[1;34m❯\e[1;90m❯\033[0m "
 
 tput setaf 3
-read -p  "Do you want to setup this ? (y/n) " PROC32
+read -p  "Make this default termux look? (y/n):" PROC32
 tput sgr 0
 if [ "$PROC32" = "y" ]; then
 	if [ -e $HOME/t-header.txt ]; then
@@ -142,18 +140,16 @@ cat >> ~/.zshrc <<-EOF
 tput cnorm
 clear
 ## terminal banner
-figlet -f ASCII-Shadow.flf "$PROC" | lolcat;
+figlet -f ASCII-Shadow "$PROC" | lolcat;
 echo
 ## cursor
 printf '\e[4 q'
 ## prompt
 TNAME="$PROC"
 setopt prompt_subst
-
 PROMPT=$'
-%{\e[0;31m%}┌─[%{\e[1;34m%}%B%{\${TNAME}%}%{\e[1;33m%}@%{\e[1;36m%}termux%b%{\e[0;31m%}]─[%{\e[0;32m%}%(4~|/%2~|%~)%{\e[0;31m%}]%b
+%{\e[0;31m%}┌─[%{\e[1;34m%}%B%{\${TNAME}%}%{\e[1;33m%}#Line-%{\e[1;36m%\I%b%{\e[0;31m%}]─[%{\e[0;32m%}%(4~|/%2~|%~)%{\e[0;31m%}]%b
 %{\e[0;31m%}└──╼ %{\e[1;31m%}%B❯%{\e[1;34m%}❯%{\e[1;90m%}❯%{\e[0m%}%b '
-
 ## Replace 'ls' with 'exa' (if available) + some aliases.
 if [ -n "\$(command -v exa)" ]; then
         alias l='exa'
@@ -170,7 +166,6 @@ else
         alias ll='ls --color=auto -Fhl'
         alias ll.='ls --color=auto -Fhl -d .*'
 fi
-
 ## Safety.
 alias cp='cp -i'
 alias ln='ln -i'
@@ -188,20 +183,19 @@ exit
 }
 
 clear;
-echo -e "\033[31m$(figlet -f Remo773 "T- Header")\e[0m"
+echo -e "\033[31m$(figlet -f Remo773 "CUSTOM-T")\e[0m"
 echo -e "\e[1;32m
-+----------------------------------*/
-Remo773 : (\e[33m20.8.2020\e[32m)
-
-1. Oh-my-zsh
-2. Zsh-syntax-highlight (\e[33mplugins\e[01;32m)
-3. Zsh-command-autosuggest (\e[33mplugins\e[01;32m)
-4. Terminal-Header
-5. Custom PS1 prompt ( \e[33mBest one\e[1;32m )
-+----------------------------------*/
+    ╔═════════════════════════════════════╗
+    ║LONEWOLF : (\e[33m11.3.2021\e[32m)               ║
+    ║1. Oh-my-zsh                         ║
+    ║2. Zsh-syntax-highlight (\e[33mplugins\e[01;32m)    ║
+    ║3. Zsh-command-autosuggest (\e[33mplugins\e[01;32m) ║
+    ║4. Terminal-Header                   ║
+    ║5. Custom PS1 prompt ( \e[33mBest one\e[1;32m )    ║
+    ╚═════════════════════════════════════╝
 \033[0m";
 tput setaf 3;
-read -p  "Do you want to setup this ? (y/n) " PROC33
+read -p  "Proceed? (y/n) " PROC33
 
 tput sgr 0
 if [ "$PROC33" = "y" ]; then
